@@ -1,9 +1,10 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const Botton = (props) => {
   return (
     <>
-    <a className={`btn ${props.class || 'btn-outline-info'}`} href={props.href}>{props.text}</a>
+    <Link className={`btn ${props.class || 'btn-outline-info'}`} to={props.url}>{props.text}</Link>
     </>
   )
 }
