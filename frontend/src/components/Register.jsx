@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from 'react-router-dom'
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const Register = () => {
     const [error, setError] = useState({})
     const [success, setSuccess] = useState(false)
     const [loading, setLoading] = useState(false)
+    const navigate = useNavigate()
 
     const handleRegistation = async (e) => {
         e.preventDefault()
@@ -24,11 +26,12 @@ const Register = () => {
         }
         // send userData to backend
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/v1/accounts/register/', userData)
+            const response = await axios.post('http://127.0.0.1:8000/api/v1/register/', userData)
             console.log("Response data:", response.data)
             console.log("User registered successfully")
             setError({})
             setSuccess(true)
+            navigate('/login')
         } catch (error) {
             setError(error.response.data)
             console.log("error:", error)
