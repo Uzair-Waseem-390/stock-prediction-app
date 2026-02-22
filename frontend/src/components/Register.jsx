@@ -3,6 +3,7 @@ import axios from 'axios'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
+import axiosInstance from '../axisoInstance'
 
 const Register = () => {
     const [formData, setFormData] = useState({
@@ -26,7 +27,7 @@ const Register = () => {
         }
         // send userData to backend
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/v1/register/', userData)
+            const response = await axiosInstance.post('register/', userData)
             console.log("Response data:", response.data)
             console.log("User registered successfully")
             setError({})

@@ -7,6 +7,9 @@ import Register from './components/Register'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Login from './components/Login'
 import AuthProvider from './AuthProvider'
+import Profile from './Profile'
+import PublicRoutes from './PublicRoutes'
+import PrivateRoute from './PrivateRoute'
 
 function App() {
 
@@ -17,8 +20,13 @@ function App() {
         <Header />
       <Routes>
         <Route path='/' element={<Main />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/register' element={<PublicRoutes><Register /></PublicRoutes>} />
+        <Route path='/login' element={<PublicRoutes><Login /></PublicRoutes>} />
+        
+        {/* <Route path='/profile' element={<Profile />} /> */}
+        <Route element={<PrivateRoute />}>
+            <Route path="/profile" element={<Profile />} />
+        </Route>
       </Routes>
           <Footer />
     </BrowserRouter>
